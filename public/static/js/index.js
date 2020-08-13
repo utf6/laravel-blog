@@ -197,8 +197,8 @@ function openapp(url, appid, appname, refresh) {
     	if(refresh===true){//刷新
     		$loading.show();
     		$iframe.attr("src",url);
-    		$iframe.load(function(){
-            	$loading.hide();
+    		$iframe.on('load', function(){
+                $loading.hide();
             });
     	}
     	$iframe.show();

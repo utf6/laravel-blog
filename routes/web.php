@@ -42,4 +42,18 @@ Route::group(['namespace' => 'Admin', 'prefix' => 'admin'], function (){
     //网站信息
     Route::get('setting/site', 'SettingController@site')->name('setting.site');
     Route::post('setting/site', 'SettingController@setSite')->name('setting.site');
+    //菜单
+    Route::get('menu/index', 'MenuController@index')->name('menu.index');
+
+    /*
+     * 内容管理
+     */
+    Route::resources([
+        'posts' => 'PostController',
+        'menus' => 'MenuController'
+    ]);
+    //回收站
+    Route::get('posts/recycle', 'PostController@recycle')->name('posts.recycle');
+
+
 });

@@ -145,7 +145,7 @@
                                     </ul>
                                 </li>
                                 <li>
-                                    <a href="javascript:openapp('/Admin/setting/site','197Admin','网站信息',true);">
+                                    <a href="javascript:openapp('{{ route('setting.site') }}','197Admin','网站信息',true);">
                                         <i class="fa fa-caret-right"></i>
                                         <span class="menu-text">网站信息</span>
                                     </a>
@@ -163,15 +163,16 @@
                             </a>
                             <ul class="submenu" style="display: none;">
                                 <li>
-                                    <a href="javascript:openapp('/Admin/menu/index','192Admin','后台菜单',true);">
+                                    <a href="javascript:openapp('{{ route('menu.index') }}', '192Admin','后台菜单',true);">
                                         <i class="fa fa-caret-right"></i>
                                         <span class="menu-text">后台菜单</span>
                                     </a>
                                 </li>
+
                                 <li class="">
                                     <a href="#" class="dropdown-toggle">
                                         <i class="fa fa-caret-right"></i>
-                                        <span class="menu-text">前台菜单	</span>
+                                        <span class="menu-text">前台菜单</span>
                                         <b class="arrow fa fa-angle-right"></b>
                                     </a>
                                     <ul class="submenu" style="display: none;">
@@ -241,13 +242,13 @@
                             </a>
                             <ul class="submenu" style="display: none;">
                                 <li>
-                                    <a href="javascript:openapp('/Admin/content/index','203Admin','文章管理',true);">
+                                    <a href="javascript:openapp('{{ route('posts.index') }}','203Admin','文章管理',true);">
                                         <i class="fa fa-caret-right"></i>
                                         <span class="menu-text">文章管理</span>
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="javascript:openapp('/Admin/content/recycle','204Admin','回收站',true);">
+                                    <a href="javascript:openapp('{{ route('posts.recycle') }}','204Admin','回收站',true);">
                                         <i class="fa fa-caret-right"></i>
                                         <span class="menu-text">回收站</span>
                                     </a>

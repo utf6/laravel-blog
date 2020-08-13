@@ -4,10 +4,10 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
-class Admin extends Authenticatable
+class Post extends Authenticatable
 {
     //
     protected $fillable = [
-        'nickname'
+        'title', 'content', 'status', 'picture'
     ];
 }
