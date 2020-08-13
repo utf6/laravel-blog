@@ -9,8 +9,8 @@ $(function () {
 	$loading=$("#loading");
 	var headerheight=86;
 	$content.height($(window).height()-headerheight);
-	
-	
+
+
 	$nav_wraper.height($(window).height()-45);
 	$nav_wraper.css("overflow","auto");
 	//$nav_wraper.niceScroll();
@@ -19,12 +19,12 @@ $(function () {
 		$content.height($(window).height()-headerheight);
 		 calcTaskitemsWidth();
 	});
-	$("#content iframe").load(function(){
-    	$loading.hide();
+	$("#content iframe").on('load', function () {
+        $loading.hide();
     });
-	
+
     $task_content_inner = $("#task-content-inner");
-   
+
 
     $("#searchMenuKeyWord").keyup(function () {
         var wd = $(this).val();
@@ -51,18 +51,18 @@ $(function () {
 
     });
 
-    
+
 
     $("#appbox  li .delete").click(function (e) {
         $(this).parent().remove();
         return false;
     });
 
-   
+
 
     ///
 
-    $(".apps_container li").live("click", function () {
+    $(".apps_container li").on('live', 'click', function () {
         var app = '<li><span class="delete" style="display:inline">×</span><img src="" class="icon"><a href="#" class="title"></a></li>';
         var $app = $(app);
         $app.attr("data-appname", $(this).attr("data-appname"));
@@ -83,28 +83,28 @@ $(function () {
         $(".window").hide();
     });
 
-    $(".task-item").live("click", function () {
+    $(".task-item").on('live', 'click', function () {
         var appid = $(this).attr("app-id");
         var $app = $('#' + appid);
         showTopWindow($app);
     });
 
-    $("#task-content-inner li").live("click", function () {
-    	openapp($(this).attr("app-url"), $(this).attr("app-id"), $(this).attr("app-name"));
-    	return false;
-    });
-    
-    $("#task-content-inner li").live("dblclick", function () {
-    	closeapp($(this));
-    	return false;
-    	
-    });
-    $("#task-content-inner a.macro-component-tabclose").live("click", function () {
-    	closeapp($(this).parent());
+    $("#task-content-inner li").on('live', 'click', function () {
+        openapp($(this).attr("app-url"), $(this).attr("app-id"), $(this).attr("app-name"));
         return false;
     });
-    
-    $("#task-next").click(function () {
+
+    $("#task-content-inner li").on('live', "dblclick", function () {
+        closeapp($(this));
+        return false;
+    });
+
+    $("#task-content-inner a.macro-component-tabclose").on('live', "click", function () {
+        closeapp($(this).parent());
+        return false;
+    });
+
+    $("#task-next").on('click', function () {
         var marginleft = $task_content_inner.css("margin-left");
         marginleft = marginleft.replace("px", "");
         var width = $("#task-content-inner li").length * tabwidth;
@@ -115,7 +115,7 @@ $(function () {
         $task_content_inner.stop();
         $task_content_inner.animate({ "margin-left": marginleft + "px" }, 300, 'swing');
     });
-    $("#task-pre").click(function () {
+    $("#task-pre").on('click', function () {
         var marginleft = $task_content_inner.css("margin-left");
         marginleft = parseInt(marginleft.replace("px", ""));
         marginleft = marginleft + tabwidth > 0 ? 0 : marginleft + tabwidth;
@@ -123,15 +123,14 @@ $(function () {
         $task_content_inner.stop();
         $task_content_inner.animate({ "margin-left": marginleft + "px" }, 300, 'swing');
     });
-    
-    $("#refresh_wrapper").click(function(){
-    	var $current_iframe=$("#content iframe:visible");
-    	$loading.show();
-    	//$current_iframe.attr("src",$current_iframe.attr("src"));
-    	$current_iframe[0].contentWindow.location.reload();
-    	return false;
-    });
 
+    $("#refresh_wrapper").on('click', function(){
+        var $current_iframe=$("#content iframe:visible");
+        $loading.show();
+        //$current_iframe.attr("src",$current_iframe.attr("src"));
+        $current_iframe[0].contentWindow.location.reload();
+        return false;
+    });
     calcTaskitemsWidth();
 });
 function calcTaskitemsWidth() {
@@ -158,12 +157,7 @@ function closeapp($this){
     	calcTaskitemsWidth();
     	$("#task-next").click();
 	}
-	 
 }
-
-
-
-
 
 var task_item_tpl ='<li class="macro-component-tabitem">'+
 '<span class="macro-tabs-item-text"></span>'+
@@ -183,8 +177,8 @@ function openapp(url, appid, appname, refresh) {
         $loading.show();
         $appiframe=$(appiframe_tpl).attr("src",url).attr("id","appiframe-"+appid);
         $appiframe.appendTo("#content");
-        $appiframe.load(function(){
-        	$loading.hide();
+        $appiframe.on('load', function(){
+            $loading.hide();
         });
         calcTaskitemsWidth();
     } else {
@@ -210,18 +204,18 @@ function openapp(url, appid, appname, refresh) {
     	$iframe.show();
     	//$mainiframe.attr("src",url);
     }
-    
+
     //
     var itemoffset= $("#task-content-inner li[app-id='"+appid+"']").index()* tabwidth;
     var width = $("#task-content-inner li").length * tabwidth;
-   
+
     var content_width = $("#task-content").width();
     var offset=itemoffset+tabwidth-content_width;
-    
+
     var lesswidth = content_width - width;
-    
+
     var marginleft = $task_content_inner.css("margin-left");
-   
+
     marginleft =parseInt( marginleft.replace("px", "") );
     var copymarginleft=marginleft;
     if(offset>0){
@@ -229,20 +223,20 @@ function openapp(url, appid, appname, refresh) {
     }else{
     	marginleft=itemoffset+marginleft>=0?marginleft:-itemoffset;
     }
-    
+
     if(-itemoffset==marginleft){
     	marginleft = marginleft + tabwidth > 0 ? 0 : marginleft + tabwidth;
     }
-    
+
     //alert("cddd:"+(content_width-copymarginleft)+" dddd:"+(-itemoffset));
     if(content_width-copymarginleft-tabwidth==itemoffset){
     	marginleft = marginleft - tabwidth <= lesswidth ? lesswidth : marginleft - tabwidth;
     }
-    
+
 	$task_content_inner.animate({ "margin-left": marginleft + "px" }, 300, 'swing');
-    
-    
-    
-  
+
+
+
+
 }
 

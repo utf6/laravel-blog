@@ -16,29 +16,29 @@ class BaseController extends Controller
      * 成功返回
      * @param $info
      * @param string $referer
-     * @return \Illuminate\Http\JsonResponse
+     * @return array
      */
     public function success($info, $referer='')
     {
-        return response()->json([
+        return [
             'state' => 'success',
             'info' => $info,
             'referer' => $referer
-        ]);
+        ];
     }
 
     /**
      * 失败操作
      * @param $info
      * @param string $referer
-     * @return \Illuminate\Http\JsonResponse
+     * @return array
      */
     public function error($info, $referer='')
     {
-        return response()->json([
-           'state' => 'fail',
-           'info' => $info,
-           'referer' => $referer
-        ]);
+        return [
+            'state' => 'fail',
+            'info' => $info,
+            'referer' => $referer
+        ];
     }
 }

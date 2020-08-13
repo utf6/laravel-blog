@@ -41,7 +41,7 @@
 
 <script>
     var GV = {
-        ROOT: "/",
+        ROOT: "",
         WEB_ROOT: "/",
         JS_ROOT: "static/js/"
     };

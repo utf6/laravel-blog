@@ -17,7 +17,7 @@ class HomeController extends BaseController
     }
 
     /**
-     * welcome view
+     * welcome views
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function welcome()
