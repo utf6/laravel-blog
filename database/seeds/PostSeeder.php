@@ -13,6 +13,7 @@ class PostSeeder extends Seeder
     public function run()
     {
         //
-        factory(Post::class, 50)->create();
+        $post = factory(Post::class)->times(70)->make();
+        Post::insert($post->toArray());
     }
 }
