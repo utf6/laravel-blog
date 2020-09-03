@@ -1,14 +1,15 @@
-.idea
 /node_modules
-/public/nginx.htaccess
-/public/css
+/public/hot
 /public/storage
-/public/js
-/storage
-vendor
-.env.example
-.editorconfig
+/storage/*.key
+/vendor
+
+composer.lock
+package.lock
+
 .env
+.env.example
+
 
 .phpunit.result.cache
 Homestead.json
